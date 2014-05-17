@@ -10,7 +10,9 @@
 
 makeCacheMatrix <- function(x = matrix()) {
     # if x is not a matrix halt and complain
-    if(!is.matrix(x)) stop("argument must be a matrix.")
+    if(!is.matrix(x) || dim(x)[1] != dim(x)[2]) {
+      stop("argument must be a square matrix.")
+    }
   
     # initialize local matrix inverse variable as NULL
     m <- NULL
