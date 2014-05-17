@@ -45,18 +45,25 @@ makeCacheMatrix <- function(x = matrix()) {
 ## cache.
 
 cacheSolve <- function(x, ...) {
+  # retrieve the cached inverse matrix
   local.inverse <- x$getinverse()
+  
+  # if there is a non-null matrix retrieved, stop and return this cached inverse
+  # matrix
   if(!is.null(local.inverse)) {
     message("getting cached data")
     return(local.inverse)
   }
+  
+  # otherwise retrieve the cached original matrix
   data <- x$get()
+  
+  # calculate its inverse
   local.inverse <- solve(data, ...)
+  
+  # store the result in the cached inverse location
   x$setinverse(local.inverse)
+  
+  # return the solution
   local.inverse
 }
-  
-x <- matrix(c(4, 2, 7, 6), nrow = 2)
-
-y <- makeCacheMatrix(x)
-cacheSolve(y)
