@@ -9,6 +9,8 @@
 ## makeCacheMatrix creates a special "matrix" object that can cache its inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
+    # if x is not a matrix halt and complain
+    if(!is.matrix(x)) stop("argument must be a matrix.")
   
     # initialize local matrix inverse variable as NULL
     m <- NULL
