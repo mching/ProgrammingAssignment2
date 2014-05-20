@@ -9,31 +9,28 @@
 ## makeCacheMatrix creates a special "matrix" object that can cache its inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
-    # if x is not a matrix halt and complain
-    if(!is.matrix(x) || dim(x)[1] != dim(x)[2]) {
-      stop("argument must be a square matrix.")
-    }
-  
+
     # initialize local matrix inverse variable as NULL
     m <- NULL
   
-    # this function will take the input of a matrix and set it to a "cached" 
-    # matrix in a different environment. It also initializes a "cached" inverse as
-    # NULL.
+    # This function will take the input of a matrix and set it to a "cached" 
+    # matrix in the makeCacheMatrix environment (i.e., the parent environment of
+    # set). It also initializes a "cached" inverse as NULL.
     set <- function(y = matrix()) {
         x <<- y
         m <<- NULL
     }
   
-    # this function will retrieve the "cached" matrix from the local or parent environment
+    # This function will retrieve the "cached" matrix from the x in the
+    # makeCacheMatrix environment
     get <- function() x
     
-    # this function sets its input to be the "cached" inverse matrix solution in
-    # the other environment
+    # This function sets its input to be the "cached" inverse matrix solution in
+    # the makeCacheMatrix environment
     setinverse <- function(inverse) m <<- inverse
     
-    # this function retrieves the "cached" inverse matrix solution from the other
-    # environment
+    # This function retrieves the "cached" inverse matrix solution from the
+    # makeCacheMatrix environment
     getinverse <- function() m
     
     # this combines the 4 functions into a list for easy access
