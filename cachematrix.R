@@ -25,7 +25,7 @@ makeCacheMatrix <- function(x = matrix()) {
         m <<- NULL
     }
   
-    # this function will retrieve the "cached" matrix from the other environment
+    # this function will retrieve the "cached" matrix from the local or parent environment
     get <- function() x
     
     # this function sets its input to be the "cached" inverse matrix solution in
